@@ -4,13 +4,20 @@ const mongoose = require('mongoose');
 const userRoutes = require('./routes/user');
 const booksRoutes = require('./routes/books');
 
+
+// Connection à mongo
+
 mongoose.connect('mongodb+srv://MVGUser:ugXIe2Q6UmxQEJ1D@monvieuxgrimoire.ijiiay5.mongodb.net/?retryWrites=true&w=majority&appName=MonVieuxGrimoire')
 .then(() => console.log('Connexion à MongoDB réussie !'))
 .catch(() => console.log('Connexion à MongoDB échouée !'))
 
+// utilisation de express
+
 const app = express();
 
 app.use(express.json())
+
+// Ajout des header pour le CORS
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -18,6 +25,9 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     next();
   });
+
+
+// Initialisation des router
 
 app.use('/api/books', booksRoutes);
 app.use('/api/auth', userRoutes);

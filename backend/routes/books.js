@@ -7,6 +7,7 @@ const resize = require('../middleware/resize')
 
 const booksCtrl = require('../controllers/books');
 
+// Définition de chaque route par action
 
 router.get('/', booksCtrl.getAllBooks);
 

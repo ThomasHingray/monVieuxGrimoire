@@ -6,6 +6,8 @@ const userSchema = mongoose.Schema({
   password: { type: String, required: true }
 });
 
+// Il ne peut y avoir qu'un compte par adresse
+
 userSchema.plugin(uniqueValidator);
 
 module.exports = mongoose.model('User', userSchema);
