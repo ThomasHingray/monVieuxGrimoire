@@ -1,14 +1,14 @@
-const sharp = require('sharp');
-const fs = require('fs');
+const sharp = require('sharp')
+const fs = require('fs')
 
 module.exports = async (req, res, next) => {
 
 	if (!req.file) {
     	return next()
-	};
+	}
 	try {
-			req.file.compressedFilename = req.file.filename + '.webp';
-			req.file.compressedFilePath = req.file.path + '.webp';
+			req.file.compressedFilename = req.file.filename + '.webp'
+			req.file.compressedFilePath = req.file.path + '.webp'
 
 
 			// sharp permet de modifier la taille et le type de fichier
@@ -20,10 +20,10 @@ module.exports = async (req, res, next) => {
 		
 			// fs permet de supprimer le fichier d'origine
 			fs.unlink(req.file.path, (error) => {
-				if(error) console.log(error);
-			});
-			next();
+				if(error) console.log(error)
+			})
+			next()
 		} 	catch(error) {
-				res.status(403).json({ error });
+				res.status(403).json({ error })
 			}
-};
+}
