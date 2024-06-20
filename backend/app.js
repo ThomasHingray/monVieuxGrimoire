@@ -1,13 +1,17 @@
+const dotenv = require('dotenv');
 const express = require('express')
 const path = require('path')
 const mongoose = require('mongoose')
 const userRoutes = require('./routes/user')
 const booksRoutes = require('./routes/books')
 
+dotenv.config({
+  path: process.env.NODE_ENV === 'production' ? '.env.prod' : '.env.dev'
+})
 
 // Connection à mongo
-
-mongoose.connect('mongodb+srv://MVGUser:ugXIe2Q6UmxQEJ1D@monvieuxgrimoire.ijiiay5.mongodb.net/?retryWrites=true&w=majority&appName=MonVieuxGrimoire')
+console.log(process.env)
+mongoose.connect('mongodb+srv://MVGUser:' + process.env.PASSWORD + '@monvieuxgrimoire.ijiiay5.mongodb.net/?retryWrites=true&w=majority&appName=MonVieuxGrimoire')
 .then(() => console.log('Connexion à MongoDB réussie !'))
 .catch(() => console.log('Connexion à MongoDB échouée !'))
 
